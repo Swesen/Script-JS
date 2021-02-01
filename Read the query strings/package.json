@@ -1,0 +1,9 @@
+{
+  "name": "read-the-query-strings",
+  "version": "0.0.0",
+  "description": "Read the query strings",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  }
+}

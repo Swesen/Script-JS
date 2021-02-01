@@ -1,0 +1,12 @@
+{
+  "name": "my-calc",
+  "version": "0.0.0",
+  "description": "MyCalc",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "telefonlista-uppgift",
+  "version": "0.0.0",
+  "description": "Telefonlista Uppgift",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

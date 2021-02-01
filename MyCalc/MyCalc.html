@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MyCalc</title>
+    <style>
+        body {
+            font-family: Consolas;
+        }
+
+        td {
+            border-style: outset;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            background-color: lightgray;
+            user-select: none;
+        }
+
+            td:hover {
+                background-color: lightblue;
+            }
+
+            td:active {
+                border-style: inset;
+                background-color: lightgray;
+            }
+    </style>
+</head>
+
+<body>
+    <h1>MyCalc</h1>
+    <table>
+        <tr>
+            <td id="calcTextBox" colspan="4"
+                style="border-style:inset;background-color:white;text-align:left;user-select: text;">
+                t: script error<br>
+                z: 365.2422<br>
+                y: 24<br>
+                x: 60<br>
+            </td>
+        </tr>
+        <tr>
+            <td id="calcInput" colspan="4" style="border-style:none;background-color:white;text-align:left;">6_</td>
+        </tr>
+        <tr>
+            <td onclick="pushUpStack()" colspan="2">enter</td>
+            <td onclick="buttonInput('ce')">ce</td>
+            <td onclick="buttonInput('cs')">cs</td>
+        </tr>
+        <tr>
+            <td onclick="buttonInput(7)">7</td>
+            <td onclick="buttonInput(8)">8</td>
+            <td onclick="buttonInput(9)">9</td>
+            <td onclick="buttonInput('/')">/</td>
+        </tr>
+        <tr>
+            <td onclick="buttonInput(4)">4</td>
+            <td onclick="buttonInput(5)">5</td>
+            <td onclick="buttonInput(6)">6</td>
+            <td onclick="buttonInput('*')">*</td>
+        </tr>
+        <tr>
+            <td onclick="buttonInput(1)">1</td>
+            <td onclick="buttonInput(2)">2</td>
+            <td onclick="buttonInput(3)">3</td>
+            <td onclick="buttonInput('-')">-</td>
+        </tr>
+        <tr>
+            <td onclick="buttonInput('±')">±</td>
+            <td onclick="buttonInput(0)">0</td>
+            <td onclick="buttonInput('.')">.</td>
+            <td onclick="buttonInput('+')">+</td>
+        </tr>
+    </table>
+
+    <script>
+        var x = 0;
+        var y = 0;
+        var z = 0;
+        var t = 0;
+        var input = "";
+        var sign = "";
+
+
+
+        function buttonInput(buttonValue) {
+
+            if (typeof buttonValue == typeof NaN) {
+                input += buttonValue;
+            }
+            else {
+                switch (buttonValue) {
+                    case "/":
+                        x /= y;
+                        rollDownStack();
+                        break;
+
+                    case "*":
+                        x *= y;
+                        rollDownStack();
+                        break;
+
+                    case "-":
+                        x -= y;
+                        rollDownStack();
+                        break;
+
+                    case "+":
+                        x += y;
+                        rollDownStack();
+                        break;
+
+                    case ".":
+                        if (input.indexOf(".") == -1) {
+                            input += ".";
+                        }
+                        t = input.search(".");
+                        break;
+
+                    case "±":
+                        if (sign === "") {
+                            sign = "-"
+                        }
+                        else {
+                            sign = "";
+                        }
+                        break;
+
+                    case "ce":
+                        input = "";
+                        sign = "";
+                        break;
+
+                    case "cs":
+                        x = y = z = t = 0;
+                        break;
+                }
+            }
+
+            updateText();
+        }
+
+        function rollDownStack() {
+            y = z;
+            z = t;
+            t = 0;
+        }
+
+        function pushUpStack() {
+            t = z;
+            z = y;
+            y = x;
+            if (sign === "") {
+                x = input * 1;
+            }
+            else {
+                x = input * -1;
+                sign = "";
+            }
+
+            input = "";
+            updateText();
+        }
+
+        function updateText() {
+            document.getElementById("calcInput").innerHTML = sign + input + "_";
+            document.getElementById("calcTextBox").innerHTML = "t: " + t + "<br>z: " + z + "<br>y: " + y + "<br>x: " + x;
+        }
+
+        updateText();
+    </script>
+</body>
+
+</html>

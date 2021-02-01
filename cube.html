@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Cube</title>
+  <style type="text/css">
+    body {
+      background: #FFEEEE;
+      font-size: 125%;
+    }
+
+    table {
+      border: solid 1px #000000;
+      background: #FFDDDD;
+    }
+
+    td {
+      border: none;
+      background: white;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>Math-test</h3>
+
+  <!-- body text here -->
+  <table>
+    <tr>
+      <th>num</th>
+      <th>num²</th>
+      <th>num³</th>
+      <th>sqrt(num)</th>
+      <th>cubrt(num)</th>
+    </tr>
+    <script>
+      square = a => a * a;
+      cube = a => a * a * a;
+      cubrt = a => Math.pow(a, 1 / 3);
+
+      for (i = 1; i < 10; i++) {
+        document.write("<tr>"
+          + "<td>" + i + "</td>"
+          + "<td>" + square(i) + "</td>"
+          + "<td>" + cube(i) + "</td>"
+          + "<td>" + Math.sqrt(i) + "</td>"
+          + "<td>" + cubrt(i) + "</td>"
+          + "</tr>");
+      }
+    </script>
+  </table>
+</body>
+
+</html>

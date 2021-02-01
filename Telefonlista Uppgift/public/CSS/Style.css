@@ -1,0 +1,59 @@
+body {
+    background-color: #808080;
+    font-family: Bahnschrift;
+}
+.form-label {
+    display: inline-block;
+    width: 6rem;
+    text-align: right;
+}
+
+.form-textbox {
+    width: 35%;
+    margin-left: 10px;
+    background-color: #363f46;
+    border: none;
+    border-bottom: 2px dotted #808080;
+}
+
+    .form-textbox:focus {
+        transition-duration: 0.2s;
+        font-size: 120%;
+        background-color: #c2c2c2;
+        outline: none;
+        border-bottom: 4px solid #2c2c2c;
+        padding-left: 3px;
+    }
+
+.page-width {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #262626;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.center-form {
+    max-width: 500px;
+    color: #c2c2c2;
+    font-weight: 700;
+    margin: 0 auto;
+    background-color: #2d363d;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.center {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+button {
+    color: white;
+    background: none;
+    border: none;
+    background-color: #484848;
+    padding: 7px 25px;
+    border-radius: 3px;
+}

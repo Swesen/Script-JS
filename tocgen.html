@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>ToC-generator</title>
+  <style type="text/css">
+    body {
+      background: #FFEEEE;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="toc"></div>
+
+  <h2>Kapitel 1 - Non eram nescius</h2>
+
+  <p>Non eram nescius, <i>Brute</i>, cum, quae summis ingeniis exquisitaque doctrina philosophi Graeco sermone
+    tractavissent, ea Latinis litteris mandaremus, fore ut hic noster labor in varias reprehensiones incurreret. nam
+    quibusdam, et iis quidem non admodum indoctis, totum hoc displicet philosophari. quidam autem non tam id
+    reprehendunt, si remissius agatur, sed tantum studium tamque multam operam ponendam in eo non arbitrantur. erunt
+    etiam, et ii quidem eruditi Graecis litteris, contemnentes Latinas, qui se dicant in Graecis legendis operam malle
+    consumere. postremo aliquos futuros suspicor, qui me ad alias litteras vocent, genus hoc scribendi, etsi sit
+    elegans, personae tamen et dignitatis esse negent.</p>
+
+  Finding HTML Elements by Tag Name
+
+  <h2>Kapitel 2 - LoContra quos omnis</h2>
+
+  <p>Locontra quos omnis dicendum breviter existimo. Quamquam philosophiae quidem vituperatoribus satis responsum est eo
+    libro, quo a nobis philosophia defensa et collaudata est, cum esset accusata et vituperata ab Hortensio. qui liber
+    cum et tibi probatus videretur et iis, quos ego posse iudicare arbitrarer, plura suscepi veritus ne movere hominum
+    studia viderer, retinere non posse. Qui autem, si maxime hoc placeat, moderatius tamen id volunt fieri, difficilem
+    quandam temperantiam postulant in eo, quod semel admissum coerceri reprimique non potest, ut propemodum iustioribus
+    utamur illis, qui omnino avocent a philosophia, quam his, qui rebus infinitis modum constituant in reque eo meliore,
+    quo maior sit, mediocritatem desiderent.</p>
+
+  <h2>Kapitel 3 - Sive enim ad sapientiam</h2>
+
+  <p>Sive enim ad sapientiam perveniri potest, non paranda nobis solum ea, sed fruenda etiam [sapientia] est; sive hoc
+    difficile est, tamen nec modus est ullus investigandi veri, nisi inveneris, et quaerendi defatigatio turpis est, cum
+    id, quod quaeritur, sit pulcherrimum. etenim si delectamur, cum scribimus, quis est tam invidus, qui ab eo nos
+    abducat? sin laboramus, quis est, qui alienae modum statuat industriae? nam ut Terentianus Chremes non inhumanus,
+    qui novum vicinum non vult 'fodere aut arare aut aliquid ferre denique' -- non enim illum ab industria, sed ab
+    inliberali labore deterret --, sic isti curiosi, quos offendit noster minime nobis iniucundus labor. </p>
+
+  <h2>Kapitel 4 - Iis igitur est difficilius</h2>
+
+  <p>Iis igitur est difficilius satis facere, qui se Latina scripta dicunt contemnere. in quibus hoc primum est in quo
+    admirer, cur in gravissimis rebus non delectet eos sermo patrius, cum idem fabellas Latinas ad verbum e Graecis
+    expressas non inviti legant. quis enim tam inimicus paene nomini Romano est, qui Ennii <i>Medeam</i> aut
+    <i>Antiopam</i> Pacuvii spernat aut reiciat, quod se isdem Euripidis fabulis delectari dicat, Latinas litteras
+    oderit? </p>
+
+  <p>Synephebos ego, inquit, potius Caecilii aut Andriam Terentii quam utramque Menandri legam?</p>
+
+  <script>
+    var italicElements = document.getElementsByTagName("i");
+
+    for (let i = 0; i < italicElements.length; i++) {
+      italicElements[i].style.color = "blue";
+      italicElements[i].style.backgroundColor = "#DDDDFF"
+      document.write(italicElements[i].innerHTML + "<br>");
+    }
+
+    var secondHeaderElements = document.getElementsByTagName("h2");
+    var tableOfContent = document.getElementById("toc");
+    var contentList = "";
+
+    contentList += "<ul>"
+    for (let i = 0; i < secondHeaderElements.length; i++) {
+      secondHeaderElements[i].style.backgroundColor = "#FF8888"
+      document.write(secondHeaderElements[i].innerHTML + "<br>");
+      contentList += "<li>" + secondHeaderElements[i].innerHTML + "</li>"
+    }
+    contentList += "</ul>"
+
+    tableOfContent.innerHTML = contentList;
+
+  </script>
+</body>
+
+</html>

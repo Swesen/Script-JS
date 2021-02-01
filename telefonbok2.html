@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Telefonbok</title>
+  <style type="text/css">
+    body {
+      background: #FFEEEE;
+      font-size: 125%;
+    }
+
+    table {
+      border: solid 1px #000000;
+      background: #FFDDDD;
+    }
+
+    td {
+      border: none;
+      background: white;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>Telefonbok</h3>
+
+  <!-- body text here -->
+  <table>
+    <tr>
+      <th>person</th>
+      <th>telefon</th>
+      <th>adress</th>
+      <th>email</th>
+    </tr>
+    <script>
+      class person {
+        constructor(namn, adress, telefon, email) {
+          this.namn = namn;
+          this.adress = adress;
+          this.telefon = telefon;
+          this.email = email;
+        }
+      }
+
+      var arneSaknusem = new person("Arne Saknusem", "Storgatan 99", "013-131313", "arne@Saknusem.se");
+      var caesarAugustus = new person("Caesar Augustus", "Coloseum 1", "073-7475776", "caesar@agustus.rom");
+      var bertilSvensson = new person("Bertil Svensson", "Lillgatan 32", "013-141516", "bertil@svensson.se");
+      var svenNilsson = new person("Sven Nilsson", "Torget 21", "013-161514", "Sven@Nilsson.se");
+
+      var telefonbok = [arneSaknusem, caesarAugustus, bertilSvensson, svenNilsson];
+
+      telefonbok.sort(function (a, b) {
+        return a.namn.toLowerCase().charCodeAt(0) - b.namn.toLowerCase().charCodeAt(0)
+      });
+
+      for (i in telefonbok) {
+        document.write("<tr><td>" + telefonbok[i].namn + "</td>");
+        document.write("<td>" + telefonbok[i].telefon + "</td>");
+        document.write("<td>" + telefonbok[i].adress + "</td>");
+        document.write("<td>" + telefonbok[i].email + "</td>");
+        document.write("</tr>");
+      }
+    </script>
+  </table>
+</body>
+
+</html>

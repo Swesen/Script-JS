@@ -1,0 +1,3 @@
+F:\OneDrive\Programming\Skolan\Script JS\Telefonlista Uppgift\obj\Debug\Telefonlista Uppgift.njsprojAssemblyReference.cache
+F:\OneDrive\Programming\Skolan\Script JS\Telefonlista Uppgift\obj\Debug\Telefonlista Uppgift.njsproj.CoreCompileInputs.cache
+F:\OneDrive\Programming\Skolan\Script JS\Telefonlista Uppgift\bin\Microsoft.NodejsTools.WebRole.dll

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MyCalc</title>
+    <style>
+        body {
+            font-family: Consolas;
+        }
+
+        td {
+            border-style: outset;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            background-color: lightgray;
+            user-select: none;
+        }
+
+        td:hover {
+            background-color: lightblue;
+        }
+
+        td:active {
+            border-style: inset;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body onkeydown="keyPress()">
+    <h1>MyCalc</h1>
+    <table>
+        <tr>
+            <td id="calcTextBox" colspan="4"
+                style="border-style:inset;background-color:white;text-align:left;user-select: text;">
+                t: script error<br>
+                z: 365.2422<br>
+                y: 24<br>
+                x: 60<br>
+            </td>
+        </tr>
+        <tr>
+            <td id="calcInput" colspan="4" style="border-style:none;background-color:white;text-align:left;">6_</td>
+        </tr>
+        <tr>
+            <td onclick="buttonInput('Enter')" colspan="2">enter</td>
+            <td onclick="buttonInput(this.innerHTML)">ce</td>
+            <td onclick="buttonInput(this.innerHTML)">cs</td>
+        </tr>
+        <tr>
+            <td onclick="buttonInput(this.innerHTML)">7</td>
+            <td onclick="buttonInput(this.innerHTML)">8</td>
+            <td onclick="buttonInput(this.innerHTML)">9</td>
+            <td onclick="buttonInput(this.innerHTML)">/</td>
+        </tr>
+        <tr>
+            <td onclick="buttonInput(this.innerHTML)">4</td>
+            <td onclick="buttonInput(this.innerHTML)">5</td>
+            <td onclick="buttonInput(this.innerHTML)">6</td>
+            <td onclick="buttonInput(this.innerHTML)">*</td>
+        </tr>
+        <tr>
+            <td onclick="buttonInput(this.innerHTML)">1</td>
+            <td onclick="buttonInput(this.innerHTML)">2</td>
+            <td onclick="buttonInput(this.innerHTML)">3</td>
+            <td onclick="buttonInput(this.innerHTML)">-</td>
+        </tr>
+        <tr>
+            <td onclick="buttonInput(this.innerHTML)">±</td>
+            <td onclick="buttonInput(this.innerHTML)">0</td>
+            <td onclick="buttonInput(this.innerHTML)">.</td>
+            <td onclick="buttonInput(this.innerHTML)">+</td>
+        </tr>
+    </table>
+    <p id="debug"></p>
+
+    <script>
+        var stack = {t:0, z:0, y:0, x:0};
+        var input = "";
+        var sign = "";
+        var display = "";
+
+        function buttonInput(buttonValue) {
+
+            if (!isNaN(buttonValue)) {
+                input += Number(buttonValue);
+            }
+            else {
+                switch (buttonValue) {
+                    case "/":
+                        if (stack.y != 0) {
+                            stack.x /= stack.y;
+                            rollDownStack();
+                        }
+                        break;
+
+                    case "*":
+                        stack.x *= stack.y;
+                        rollDownStack();
+                        break;
+
+                    case "-":
+                        stack.x -= stack.y;
+                        rollDownStack();
+                        break;
+
+                    case "+":
+                        stack.x += stack.y;
+                        rollDownStack();
+                        break;
+
+                    case ".":
+                        if (input.indexOf(".") == -1) {
+                            input += ".";
+                        }
+                        stack.t = input.search(".");
+                        break;
+
+                    case "±":
+                        if (sign === "") {
+                            sign = "-"
+                        }
+                        else {
+                            sign = "";
+                        }
+                        break;
+
+                    case "ce":
+                    case "Escape":
+                        input = "";
+                        sign = "";
+                        break;
+
+                    case "cs":
+                    case "Backspace":
+                        stack.x = stack.y = stack.z = stack.t = 0;
+                        break;
+
+                    case "Enter":
+                        pushUpStack();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            updateText();
+        }
+
+        function rollDownStack() {
+            stack.y = stack.z;
+            stack.z = stack.t;
+            stack.t = 0;
+        }
+
+        function pushUpStack() {
+            stack.t = stack.z;
+            stack.z = stack.y;
+            stack.y = stack.x;
+            if (sign === "") {
+                stack.x = Number(input);
+            }
+            else {
+                stack.x = Number(input) * -1;
+                sign = "";
+            }
+
+            input = "";
+            updateText();
+        }
+
+        function updateText() {
+            document.getElementById("calcInput").innerHTML = sign + input + "_";
+            showStack();
+        }
+
+        function showStack() {
+            display = "";
+            for (property in stack) {
+                display += property.toUpperCase() + ": " + stack[property].toPrecision(8) + "<br>"
+            }
+            document.getElementById("calcTextBox").innerHTML = display;
+        }
+
+        function keyPress() {
+            var key = event.key;
+            var debug = document.getElementById("debug");
+            debug.innerHTML = key;
+
+            buttonInput(key);
+        }
+
+        updateText();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+F:\OneDrive\Programming\Skolan\Script JS\MyCalc\obj\Debug\MyCalc.njsprojAssemblyReference.cache
+F:\OneDrive\Programming\Skolan\Script JS\MyCalc\obj\Debug\MyCalc.njsproj.CoreCompileInputs.cache
+F:\OneDrive\Programming\Skolan\Script JS\MyCalc\bin\Microsoft.NodejsTools.WebRole.dll

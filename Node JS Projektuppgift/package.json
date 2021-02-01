@@ -1,0 +1,19 @@
+{
+  "name": "node-js-projektuppgift",
+  "version": "0.0.0",
+  "description": "Node JS Projektuppgift",
+  "main": "app.js",
+  "scripts": {
+    "devStart": "nodemon app.js"
+  },
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6"
+  }
+}

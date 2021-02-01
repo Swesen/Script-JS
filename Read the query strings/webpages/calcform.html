@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            max-width: 600px;
+            margin: auto;
+            font-family: 'Dubai';
+            background-color: #727272;
+        }
+
+        form {
+            max-width: 400px;
+            width: 100%;
+            background: rgba(53, 53, 53, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        div {
+            background-color: darkgray;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 4px
+        }
+
+        label {
+            font-weight: 500;
+        }
+
+        input[type=number] {
+            width: 97%;
+            border: none;
+            border-bottom: solid 2px lightgray;
+            background: none;
+            padding-top: 10px;
+            padding-left: 10px
+        }
+
+            input[type=number]:focus {
+                outline: none;
+                border-radius: 4px;
+                background-color: #bdbdbd;
+            }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        select {
+            width: 40%;
+            border: none;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+            padding: 10px;
+        }
+
+        .center {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+
+        button {
+            border: none;
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px
+        }
+
+    </style>
+</head>
+<body>
+    <form action="/compute" method="get">
+        <div class="center">
+            <h1>Calculate form</h1>
+        </div>
+        <div>
+            <label for="x">X</label><br />
+            <input type="number" id="x" name="x" />
+        </div>
+        <div>
+            <label for="y">Y</label><br />
+            <input type="number" id="y" name="y" />
+        </div>
+        <div>
+            <label for="op">Calculation</label><br />
+            <select id="op" name="op">
+                <option value="plus">+</option>
+                <option value="minus">-</option>
+                <option value="times">*</option>
+                <option value="divide">/</option>
+            </select>
+        </div>
+        <div class="center">
+            <button type="submit">Compute!</button>
+        </div>
+    </form>
+</body>
+</html>

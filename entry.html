@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Sqrt-calc</title>
+  <style type="text/css">
+    body {
+      font-size: 150%;
+      font-family: monospace;
+    }
+
+    table {
+      border-style: solid;
+    }
+
+    td {
+      border: solid 1px #8888ff;
+    }
+
+    td.display {
+      text-align: left;
+      border-style: solid;
+      border-color: #888 #CCC #CCC #888;
+      background: white;
+    }
+
+    td.entry {
+      text-align: left;
+      border-style: none;
+      background: white;
+    }
+  </style>
+  <script>
+    /* text entry stuff */
+    var entry = "";
+    var sgn = "";
+    function showEntry() {
+      var e = document.getElementById('entry');
+      e.innerHTML = sgn + entry + "_";
+    }
+
+    /* stack stuff */
+    var s = { end: 10, start: 1 };
+    function showStack() {
+      var S = document.getElementById('stack');
+      S.innerHTML = "";
+      for (v in s) {
+        S.innerHTML = v + " = " + s[v] + "<br/>" + S.innerHTML;
+      }
+    }
+    function concat(n) {
+      entry = entry + n;
+      showEntry();
+    }
+    function cle() {
+      entry = "";
+      showEntry();
+    }
+    function setStart() {
+      s.start = (1 * (sgn + entry));
+      entry = "";
+      sgn = "";
+      showEntry();
+      showStack();
+      range();
+    }
+    function setEnd() {
+      s.end = (1 * (sgn + entry));
+      entry = "";
+      sgn = "";
+      showEntry();
+      showStack();
+      range();
+    }
+    function chs() {
+      if (sgn == "") {
+        sgn = "-";
+      }
+      else if (sgn == "-") {
+        sgn = "+";
+      }
+      else if (sgn == "+") {
+        sgn = "-";
+      }
+      showEntry();
+    }
+    function kp() {
+      var val = event.key;
+      var debug = document.getElementById('debug');
+      debug.innerHTML = val;
+
+      if ('0' <= val && val <= '9') {
+        concat(val);
+      }
+      else if (val == '.') {
+        concat('.');
+      }
+      else if (val == 'Escape') {
+        cle();
+      }
+      else if (val == 'Backspace') {
+        cle();
+      }
+      else if (val == 's') {
+        setStart();
+      }
+      else if (val == 'e') {
+        setEnd();
+      }
+    }
+
+    function getFunction() {
+      var elements = document.getElementsByName("function");
+
+      for (let i = 0; i < elements.length; i++) {
+        if (elements[i].checked) {
+          return elements[i].value;
+        }
+      }
+    }
+
+    function calculateFunction(numberToCalc, checkedFunction) {
+      switch (checkedFunction) {
+        case "log": return Math.log(numberToCalc);
+
+        case "sin": return Math.sin(numberToCalc);
+
+        case "cos": return Math.cos(numberToCalc);
+
+        default:
+          break;
+      }
+
+    }
+
+    function range() {
+      var selectedFunc = getFunction();
+      var text = "<tr><th>num</th><th>num²</th><th>" + selectedFunc + "</th></tr>";
+      for (i = s.start; i < s.end; i++) {
+        text += "<tr>";
+        text += "<td>" + i + "</td>";
+        text += "<td>" + i * i + "</td>";
+        text += "<td>" + calculateFunction(i, selectedFunc) + "</td>";
+        text += "</tr>";
+      }
+      var list = document.getElementById('list');
+      list.innerHTML = text;
+    }
+  </script>
+</head>
+
+<body onkeydown="kp()">
+  <p><b>Instruktioner:</b> Om du vill räkna ut funktionen i intervallet
+    från 10 till 20, skriver du först '1' '0' 's' (för startvärdet) sedan
+    '2' '0' 'e' (för slutvärdet).</p>
+  <table>
+    <tr>
+      <td colspan="4" id="stack" class="display">
+      </td>
+      <td>
+        <form onclick="range()">
+          <input type="radio" name="function" value="log" checked="true"><label for="log">log</label>
+          <input type="radio" name="function" value="sin"><label for="sin">sin</label>
+          <input type="radio" name="function" value="cos"><label for="cos">cos</label>
+        </form>
+      </td>
+      <script>
+        showStack();
+      </script>
+    </tr>
+    <tr>
+      <td id="entry" colspan="4" class="entry">_
+      </td>
+    </tr>
+  </table>
+  <table id="list">
+
+  </table>
+  <script>
+    range();
+  </script>
+  <p id="debug">debug</p>
+</body>
+
+</html>

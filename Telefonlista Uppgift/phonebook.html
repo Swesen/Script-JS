@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Lägg till i telefonlistan</title>
+    <link rel="stylesheet" href="/CSS/Style.css">
+</head>
+<body>
+    <div class="page-width">
+        <div class="center-form">
+            <h2 class="center">Lägg till i telefonlistan</h2>
+            <form action="/append" method="post">
+                <p class="center">
+                    <label for="fistName" class="form-label">Förnamn:</label>
+                    <input type="text" id="firstName" name="firstName" class="form-textbox" />
+                </p>
+                <p class="center">
+                    <label for="lastName" class="form-label">Efternamn:</label>
+                    <input type="text" id="lastName" name="lastName" class="form-textbox" />
+                </p>
+                <p class="center">
+                    <label for="address" class="form-label">Adress:</label>
+                    <input type="text" id="address" name="address" class="form-textbox" />
+                </p>
+                <p class="center">
+                    <label for="telephone" class="form-label">Telefonnr:</label>
+                    <input type="text" id="telephone" name="telephone" class="form-textbox" />
+                </p>
+                <p class="center">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="text" id="email" name="email" class="form-textbox" />
+                </p>
+                <p class="center">
+                    <button type="submit">Lägg till</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
